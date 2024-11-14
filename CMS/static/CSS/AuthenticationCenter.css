@@ -66,6 +66,24 @@ div {
     margin: 0;
 }
 
+#role{
+    display: block;
+    appearance: none;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    width: 100%;
+    margin: 0;
+}
+
+#role:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+}
+
 .btn {
     display: inline-block;
     font-weight: 400;
@@ -87,4 +105,18 @@ div {
     color: #FDFBF9;
     background-color: #10263B;
     border-color: #10263B;
+}
+
+.btn-primary:hover {
+    background-color: rgba(16, 38, 59, 0.82);
+    border-color: rgba(16, 38, 59, 0.82);
+}
+
+#code{
+    width: 60%;
+}
+
+.btn-lg {
+    margin-left: 4px;
+    min-width: fit-content;
 }

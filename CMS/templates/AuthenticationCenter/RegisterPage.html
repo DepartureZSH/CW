@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in to the site</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/AuthenticationCenter.css' %}">
+    <script
+            type="text/javascript"
+            charset="utf-8"
+            async=""
+            src="{% static 'JS/AuthenticationCenter.js' %}"
+    ></script>
 </head>
 <body>
-
+    {% load static %}
+    <div id="page">
+        <div id="page-container">
+            <div id="login-container">
+                <div id="main">
+                    <div id="loginform">
+                        <div class="logo-div">
+                            <img id="uon-logo" src="{% static 'images/uon-logo.png' %}" alt="University of Nottingham Moodle">
+                        </div>
+                        <form class="login-form" method="post" id="login">
+                            <div class="login-form-role form-div">
+                                <label for="role">Role</label>
+                                    <select id="role" name="role">
+                                        <option value="student" selected>Student</option>
+                                        <option value="teacher">Teacher</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                            </div>
+                            <div class="login-form-username form-div">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" placeholder="Username">
+                            </div>
+                            <div class="login-form-username form-div">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" placeholder="Email">
+                            </div>
+                            <div class="login-form-password form-div">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            <div class="login-form-password form-div">
+                                <label for="password1">Password1</label>
+                                <input type="password" name="password1" placeholder="Password again">
+                            </div>
+                            <div class="login-form-submit form-div">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                            <div class="login-form-register form-div">
+                                <a href="javascript:void(0);" onclick="goBack()">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
