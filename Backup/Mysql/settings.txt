@@ -1,0 +1,33 @@
+修改内容：
+
+ALLOWED_HOSTS = ['*']  # 允许其他来源的访问
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'Name'  # 新加的app
+]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 换成mysql或其他
+        'NAME': 'db name', # 数据库名称
+        'USER': 'root', # 数据库用户名
+        'PASSWORD': '15828030238', # 数据库密码
+        'HOST': '127.0.0.1',
+        'PORT': 3306,
+        'OPTIONS': {
+            'autocommit': True,
+        },
+    }
+}
+
+LANGUAGE_CODE = 'zh-hans'
+
+TIME_ZONE = 'Asia/Shanghai'
+
+USE_TZ = False

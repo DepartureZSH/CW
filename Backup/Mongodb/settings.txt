@@ -1,0 +1,30 @@
+
+ALLOWED_HOSTS = ['*']  # 允许其他来源的访问
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'center'  # 新加的app
+]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'NAME', # 数据库名称
+        'AUTH_SOURCE': 'AUTH_SOURCE',
+        'HOST': 127.0.0.1,
+        'PORT': 27017,
+        'USER': 'admin', # 数据库名称
+        'PASSWORD': '123456' # 数据库密码
+    }
+}
+
+LANGUAGE_CODE = 'zh-hans'
+
+TIME_ZONE = 'Asia/Shanghai'
+
+USE_TZ = False
