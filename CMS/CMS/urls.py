@@ -19,6 +19,5 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', include('AuthenticationCenter.urls')),
-    path('AuthenticationCenter/', include('AuthenticationCenter.urls'))
+    path('', include('AuthenticationCenter.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

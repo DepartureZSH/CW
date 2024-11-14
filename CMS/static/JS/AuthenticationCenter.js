@@ -1,9 +1,9 @@
 function goRegister() {
     var path = window.location.origin + '/Register/';
-    alert(path);
+    window.location.href = path
 }
 
 function goForgetPassword() {
     var path = window.location.origin + '/ForgetPassword/';
-    alert(path);
+    window.location.href = path
 }

@@ -11,7 +11,7 @@ from rest_framework import status
 from django.shortcuts import render
 from rest_framework.response import Response
 
-class AuthenticationCenter(APIView):
+class AuthenticationPage(APIView):
     # 定义 GET 请求的方法，内部实现相同 @api_view
     def get(self, request):
         ############################################
@@ -25,6 +25,44 @@ class AuthenticationCenter(APIView):
     #     # 业务逻辑
     #     ############################################
     #     return Response({返回参数})
+
+    # 定义 POST 请求的方法
+    def post(self, request):
+        ############################################
+        # 业务逻辑
+        ############################################
+        return Response({返回参数})
+
+class RegisterPage(APIView):
+    # 定义 GET 请求的方法，内部实现相同 @api_view
+    def get(self, request):
+        ############################################
+        # 业务逻辑
+        ############################################
+        return render(request, 'AuthenticationCenter/RegisterPage.html')
+
+    # 定义 GET 请求的方法，内部实现相同 @api_view
+    # def get(self, request):
+    #     ############################################
+    #     # 业务逻辑
+    #     ############################################
+    #     return Response({返回参数})
+
+    # 定义 POST 请求的方法
+    def post(self, request):
+        ############################################
+        # 业务逻辑
+        ############################################
+        return Response({返回参数})
+
+class ForgetPasswordPage(APIView):
+    # 定义 GET 请求的方法，内部实现相同 @api_view
+    def get(self, request):
+        ############################################
+        # 业务逻辑
+        ############################################
+        return render(request, 'AuthenticationCenter/ForgetPasswordPage.html')
+
 
     # 定义 POST 请求的方法
     def post(self, request):
