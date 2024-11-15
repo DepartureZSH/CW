@@ -52,19 +52,19 @@ class Department(models.Model):
 
 class Student(User):
     sID = models.AutoField(primary_key=True)
-    Name = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     gender = models.CharField(max_length=1)
     telephone = models.CharField(max_length=20, blank=True)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
 class Teacher(User):
     wID = models.AutoField(primary_key=True)
-    Name = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     Title = models.CharField(max_length=40)
     Telephone = models.CharField(max_length=20, blank=True)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
 class Admin(User):
     aID = models.AutoField(primary_key=True)
-    Name = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)

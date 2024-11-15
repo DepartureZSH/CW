@@ -1,4 +1,5 @@
 # from .models import Project
+import rest_framework.exceptions
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
@@ -36,6 +37,20 @@ class RegisterPage(APIView):
 
     # 定义 POST 请求的方法
     def post(self, request):
+        if request.data["role"] == "student":
+            print(request.data["password"]==request.data["password1"])
+            serializer = StudentSerializer(data=request.data)
+        elif request.data["role"] == "teacher":
+            serializer = TeacherSerializer(data=request.data)
+        else:
+            serializer = AdminSerializer(data=request.data)
+        if serializer.is_valid():
+            print("Ok", serializer.data)
+        else:
+            for key, value in serializer.errors.items():
+                print(key, "\t", value[0])
+        #     serializer.save()
+        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
         ############################################
         # 业务逻辑
         ############################################

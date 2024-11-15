@@ -1,11 +1,21 @@
 from .models import *
 from rest_framework import serializers
+import re
 
 class StudentSerializer(serializers.ModelSerializer):
 
+    def validate_username(self, value):
+        """
+        Check that the blog post is about Django.
+        """
+        pattern = r'^[a-zA-Z]+(?:[-\'][a-zA-Z]+)*$'
+        if not re.match(pattern, value):
+            raise serializers.ValidationError("Username should be a name in English.")
+        return value
+
     class Meta:
         model = Student
-        fields = "__all__"
+        fields = ["username", "email", "password"]
 
 class TeacherSerializer(serializers.ModelSerializer):
 
