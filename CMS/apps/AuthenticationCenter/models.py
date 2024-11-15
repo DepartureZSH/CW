@@ -64,6 +64,7 @@ class Teacher(User):
     Telephone = models.CharField(max_length=20, blank=True)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
+
 class Admin(User):
     aID = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)

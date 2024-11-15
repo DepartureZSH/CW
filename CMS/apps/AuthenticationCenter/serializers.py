@@ -4,14 +4,10 @@ import re
 
 class StudentSerializer(serializers.ModelSerializer):
 
-    def validate_username(self, value):
-        """
-        Check that the blog post is about Django.
-        """
-        pattern = r'^[a-zA-Z]+(?:[-\'][a-zA-Z]+)*$'
-        if not re.match(pattern, value):
-            raise serializers.ValidationError("Username should be a name in English.")
-        return value
+    def validate_email(self, email):
+        if Student.objects.filter(email=email).exists():
+            raise serializers.ValidationError("This username is already taken.")
+        return email
 
     class Meta:
         model = Student

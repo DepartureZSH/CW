@@ -8,15 +8,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/AuthenticationCenter.css' %}">
     <script
             type="text/javascript"
-            charset="utf-8"
-            async=""
-            src="{% static 'JS/AuthenticationCenter.js' %}"
+            async
+            src="{% static 'js/AuthenticationCenter.js' %}"
     ></script>
     <script
             type="text/javascript"
-            charset="utf-8"
-            async=""
-            src="{% static 'JS/Register.js' %}"
+            async
+            src="{% static 'js/Register.js' %}"
     ></script>
 </head>
 <body>
@@ -29,14 +27,25 @@
                         <div class="logo-div">
                             <img id="uon-logo" src="{% static 'images/uon-logo.png' %}" alt="University of Nottingham Moodle">
                         </div>
-                        <form class="login-form" method="post" id="login">
+{#                        <form class="login-form" method="post" id="login">#}
+                        <form class="login-form" id="login">
                             <div class="login-form-role form-div">
                                 <label for="role">Role</label>
-                                    <select id="role" name="role">
-                                        <option value="student" selected>Student</option>
-                                        <option value="teacher">Teacher</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
+                                <select id="role" name="role">
+                                    <option value="student" selected>Student</option>
+                                    <option value="teacher">Teacher</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                                <label for="campus">Campus</label>
+                                <select id="campus" name="campus">
+                                    <option value="UNNC" selected>UNNC</option>
+                                </select>
+                                <label for="department">Department</label>
+                                <select id="department" name="department">
+                                    <option value="FOSE" selected>FOSE</option>
+                                    <option value="FHSS">FHSS</option>
+                                    <option value="CELE">CELE</option>
+                                </select>
                             </div>
                             <div class="login-form-username form-div">
                                 <label for="username">Username</label>

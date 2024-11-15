@@ -38,17 +38,19 @@ class RegisterPage(APIView):
     # 定义 POST 请求的方法
     def post(self, request):
         if request.data["role"] == "student":
-            print(request.data["password"]==request.data["password1"])
             serializer = StudentSerializer(data=request.data)
         elif request.data["role"] == "teacher":
             serializer = TeacherSerializer(data=request.data)
         else:
             serializer = AdminSerializer(data=request.data)
         if serializer.is_valid():
+            serializer.save()
             print("Ok", serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             for key, value in serializer.errors.items():
                 print(key, "\t", value[0])
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         #     serializer.save()
         #     return Response(serializer.data, status=status.HTTP_201_CREATED)
         ############################################

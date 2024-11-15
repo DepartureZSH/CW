@@ -66,22 +66,26 @@ div {
     margin: 0;
 }
 
-#role{
+.login-form-role select{
     display: block;
     appearance: none;
     padding: .5rem 1rem;
     line-height: 1.5;
-    width: 100%;
-    margin: 0;
+    width: 33%;
+
 }
 
-#role:after {
+.login-form-role select:after {
     position: absolute;
     content: "";
     top: 14px;
     right: 10px;
     width: 0;
     height: 0;
+}
+
+#role,#campus{
+    margin-right: 4px;
 }
 
 .btn {
