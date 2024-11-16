@@ -3,47 +3,139 @@ from rest_framework import serializers
 import re
 
 class StudentSerializer(serializers.ModelSerializer):
+    school = serializers.CharField(max_length=255)
+    campus = serializers.CharField(max_length=40)
+    faculty = serializers.CharField(max_length=255)
 
     def validate_email(self, email):
         if Student.objects.filter(email=email).exists():
             raise serializers.ValidationError("This username is already taken.")
         return email
 
+    def create(self, validated_data):
+        campus_dict = {
+            "UNNC": "Ningbo China",
+            "UNUK": "Nottingham UK",
+            "UNMC": "Malaysia Campus"
+        }
+        faculty_dict = {
+            "CELE": "CELE",
+            "FOSE": "Science and Engineering",
+            "FHSS": "Humanities and Social Sciences"
+        }
+        department = Department.objects.get(
+            School=validated_data['school'],
+            Campus=campus_dict[validated_data['campus']],
+            Faculty=faculty_dict[validated_data['faculty']]
+        )
+        validated_data.pop('school', None)
+        validated_data.pop('campus', None)
+        validated_data.pop('faculty', None)
+        if department is None:
+            raise serializers.ValidationError("没有找到匹配的dID")
+
+        instance = Student.objects.create(
+            username=validated_data["username"],
+            email=validated_data["email"],
+            password=validated_data["password"],
+            dID=department,
+            is_user=True
+        )
+        return instance
+
     class Meta:
         model = Student
-        fields = ["username", "email", "password"]
+        fields = ["username", "email", "password", "school", "campus", "faculty"]
 
 class TeacherSerializer(serializers.ModelSerializer):
+    school = serializers.CharField(max_length=255)
+    campus = serializers.CharField(max_length=40)
+    faculty = serializers.CharField(max_length=255)
+
+    def validate_email(self, email):
+        if Teacher.objects.filter(email=email).exists():
+            raise serializers.ValidationError("This username is already taken.")
+        return email
+
+    def create(self, validated_data):
+        campus_dict = {
+            "UNNC": "Ningbo China",
+            "UNUK": "Nottingham UK",
+            "UNMC": "Malaysia Campus"
+        }
+        faculty_dict = {
+            "CELE": "CELE",
+            "FOSE": "Science and Engineering",
+            "FHSS": "Humanities and Social Sciences"
+        }
+        department = Department.objects.get(
+            School=validated_data['school'],
+            Campus=campus_dict[validated_data['campus']],
+            Faculty=faculty_dict[validated_data['faculty']]
+        )
+        validated_data.pop('school', None)
+        validated_data.pop('campus', None)
+        validated_data.pop('faculty', None)
+        if department is None:
+            raise serializers.ValidationError("没有找到匹配的dID")
+
+        instance = Teacher.objects.create(
+            username=validated_data["username"],
+            email=validated_data["email"],
+            password=validated_data["password"],
+            dID=department,
+            is_user=True,
+            is_teacher=True
+        )
+        return instance
 
     class Meta:
         model = Teacher
-        fields = "__all__"
+        fields = ["username", "email", "password", "school", "campus", "faculty"]
 
 class AdminSerializer(serializers.ModelSerializer):
+    school = serializers.CharField(max_length=255)
+    campus = serializers.CharField(max_length=40)
+    faculty = serializers.CharField(max_length=255)
+
+    def validate_email(self, email):
+        if Admin.objects.filter(email=email).exists():
+            raise serializers.ValidationError("This username is already taken.")
+        return email
+
+    def create(self, validated_data):
+        campus_dict = {
+            "UNNC": "Ningbo China",
+            "UNUK": "Nottingham UK",
+            "UNMC": "Malaysia Campus"
+        }
+        faculty_dict = {
+            "CELE": "CELE",
+            "FOSE": "Science and Engineering",
+            "FHSS": "Humanities and Social Sciences"
+        }
+        department = Department.objects.get(
+            School=validated_data['school'],
+            Campus=campus_dict[validated_data['campus']],
+            Faculty=faculty_dict[validated_data['faculty']]
+        )
+        validated_data.pop('school', None)
+        validated_data.pop('campus', None)
+        validated_data.pop('faculty', None)
+        if department is None:
+            raise serializers.ValidationError("没有找到匹配的dID")
+
+        instance = Admin.objects.create(
+            username=validated_data["username"],
+            email=validated_data["email"],
+            password=validated_data["password"],
+            dID=department,
+            is_user=True,
+            is_teacher=True,
+            is_admin=True
+        )
+        return instance
 
     class Meta:
         model = Admin
-        fields = "__all__"
-
-## 下面的部分和上面的等价，ModelSerializer可以替代与model中重复的代码，并包含了create和update方法。如果我们需要自定义，则重写这两个方法
-# class ProjectSerializer(serializers.Serializer):
-#     id = serializers.IntegerField(read_only=True)
-#     name = serializers.CharField(max_length=100)
-#     create_time = serializers.DateTimeField()
-#     update_time = serializers.DateTimeField()
-#
-#     def create(self, validated_data):
-#         """
-#         Create and return a new `project` instance, given the validated data.
-#         """
-#         return Project.objects.create(**validated_data)
-#
-#     def update(self, instance, validated_data):
-#         """
-#         Update and return an existing `project` instance, given the validated data.
-#         """
-#         instance.name = validated_data.get('name', instance.name)
-#         instance.create_time = validated_data.get('create_time', instance.create_time)
-#         instance.update_time = validated_data.get('update_time', instance.update_time)
-#         instance.save()
-#         return instance
+        fields = ["username", "email", "password", "school", "campus", "faculty"]

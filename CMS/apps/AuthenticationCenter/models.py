@@ -50,17 +50,24 @@ class Department(models.Model):
     Campus = models.CharField(max_length=40, blank=True)
     Faculty = models.CharField(max_length=255)
 
+    # def getID(self, school, campus, faculty):
+    #     try:
+    #         ID = self.objects.get(School=school, Campus=campus, Faculty=faculty).dID
+    #     except:
+    #         ID = None
+    #     return ID
+
 class Student(User):
     sID = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
-    gender = models.CharField(max_length=1)
+    gender = models.CharField(max_length=1, blank=True)
     telephone = models.CharField(max_length=20, blank=True)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
 class Teacher(User):
     wID = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
-    Title = models.CharField(max_length=40)
+    Title = models.CharField(max_length=40, blank=True)
     Telephone = models.CharField(max_length=20, blank=True)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
 

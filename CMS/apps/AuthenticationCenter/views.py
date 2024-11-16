@@ -38,25 +38,23 @@ class RegisterPage(APIView):
     # 定义 POST 请求的方法
     def post(self, request):
         if request.data["role"] == "student":
+            print(request.data)
             serializer = StudentSerializer(data=request.data)
         elif request.data["role"] == "teacher":
             serializer = TeacherSerializer(data=request.data)
         else:
             serializer = AdminSerializer(data=request.data)
         if serializer.is_valid():
+            # 保存序列化后的数据到student数据库
             serializer.save()
-            print("Ok", serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return render(request, 'AuthenticationCenter/index.html')
+            # return Response(status=status.HTTP_201_CREATED)
         else:
-            for key, value in serializer.errors.items():
-                print(key, "\t", value[0])
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        #     serializer.save()
-        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
-        ############################################
-        # 业务逻辑
-        ############################################
-        return Response(request.data, status=status.HTTP_200_OK)
+            # data = ""
+            # for key, value in serializer.errors.items():
+            #     data += "{}: {}\n".format(key, value[0])
+            # print(data)
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ForgetPasswordPage(APIView):
     # 定义 GET 请求的方法，内部实现相同 @api_view

@@ -6,14 +6,15 @@ form.addEventListener('submit', (event) => {
     if (isValid) {
         var role = document.forms["login"]["role"].value;
         var campus = document.forms["login"]["campus"].value;
-        var department = document.forms["login"]["department"].value;
+        var faculty = document.forms["login"]["faculty"].value;
         var username = document.forms["login"]["username"].value;
         var email = document.forms["login"]["email"].value;
         var password = document.forms["login"]["password"].value;
         const data = {
             role: role,
+            school: "University of Nottingham",
             campus: campus,
-            department: department,
+            faculty: faculty,
             username: username,
             email: email,
             password: password
@@ -27,12 +28,16 @@ form.addEventListener('submit', (event) => {
             body: JSON.stringify(data)
         }).then(response=>{
             if (!response.ok) {
-              throw new Error('Network response was not ok ' + response.statusText);
+                console.log('Network response was not ok ' + response)
             }
             return response.json();
         }).then(data => {
-            console.log('Success:', data);
-            // 这里可以处理后端返回的数据，例如跳转到其他页面或显示成功消息
+            const entries = Object.entries(data)
+            let res = ""
+            entries.forEach(([key, value]) => {
+                res += `${key}: ${value}\n`;
+            });
+            alert(res);
         }).catch((error) => {
             console.error('Error:', error);
         });
