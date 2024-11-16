@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # My apps
     'AuthenticationCenter',
+    'CourseCenter'
     # My middleware apps
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
 ]
 
 # rest_framework plugin

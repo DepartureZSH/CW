@@ -1,15 +1,15 @@
-const form = document.getElementById('login');
+const form = document.getElementById('register');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault()
     var isValid = validateForm();
     if (isValid) {
-        var role = document.forms["login"]["role"].value;
-        var campus = document.forms["login"]["campus"].value;
-        var faculty = document.forms["login"]["faculty"].value;
-        var username = document.forms["login"]["username"].value;
-        var email = document.forms["login"]["email"].value;
-        var password = document.forms["login"]["password"].value;
+        var role = document.forms["register"]["role"].value;
+        var campus = document.forms["register"]["campus"].value;
+        var faculty = document.forms["register"]["faculty"].value;
+        var username = document.forms["register"]["email"].value.split('@')[0];
+        var email = document.forms["register"]["email"].value;
+        var password = document.forms["register"]["password"].value;
         const data = {
             role: role,
             school: "University of Nottingham",
@@ -36,6 +36,9 @@ form.addEventListener('submit', (event) => {
             let res = ""
             entries.forEach(([key, value]) => {
                 res += `${key}: ${value}\n`;
+                if(value==='success'){
+                    window.location.href=window.location.origin
+                }
             });
             alert(res);
         }).catch((error) => {
@@ -47,22 +50,14 @@ form.addEventListener('submit', (event) => {
 function validateForm() {
     console.log("validateForm first")
     // 获取输入字段的值
-    var username = document.forms["login"]["username"].value;
-    var email = document.forms["login"]["email"].value;
-    var password = document.forms["login"]["password"].value;
-    var password1 = document.forms["login"]["password1"].value;
+    var email = document.forms["register"]["email"].value;
+    var password = document.forms["register"]["password"].value;
+    var password1 = document.forms["register"]["password1"].value;
 
     // 检查是否所有必填字段都已填写
-    if (username === "" || email === "" || password === "" || password1 === "") {
+    if (email === "" || password === "" || password1 === "") {
         alert("All fields are required.");
         return false;
-    }
-
-    // username validate
-    var usernamePattern = /^[a-zA-Z0-9]+(?:[-\'][a-zA-Z0-9]+)*$/;
-    if(!usernamePattern.test(username)){
-        alert("Username should be a name in English.")
-        return false
     }
 
     //password validation
