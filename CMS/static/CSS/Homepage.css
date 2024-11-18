@@ -26,30 +26,6 @@ body{
     display: flex;
 }
 
-@media (max-width: 660px) {
-    #header-container0{
-        flex-direction: row;
-        height: 68px;
-        display: flex;
-    }
-
-    #header-container1{
-        display: none;
-    }
-}
-
-@media (min-width: 660px) {
-    #header-container0{
-        display: none;
-    }
-
-    #header-container1{
-        flex-direction: row;
-        height: 68px;
-        display: flex;
-    }
-}
-
 #uon-logo{
     max-height: 60px;
     margin-left: 18px;
@@ -90,7 +66,7 @@ body{
 }
 
 #main{
-    width: 90%;
+    width: 80%;
     padding-top: 40px;
     padding-right: 10px;
     padding-left: 10px;
@@ -99,7 +75,7 @@ body{
 }
 
 #filter-bar{
-    width: 80%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -108,6 +84,7 @@ body{
     border-radius: 5px;
     background-color: #f0f0f0;
     padding: 10px;
+    width: 100%;
 }
 
 .d-flex{
@@ -148,8 +125,13 @@ body{
     background-color: #d8d8d8;
 }
 
+.selected {
+    background-color: lightskyblue;
+    border-radius: 3px;
+}
+
 .search_bar{
-    width: 90%;
+    width: 100%;
 }
 
 label{
@@ -190,4 +172,51 @@ input{
     color: #FDFBF9;
     background-color: #10263B;
     border-color: #10263B;
+}
+
+#courses-div{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#courses-div article{
+    float: left;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#course{
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+@media (max-width: 660px) {
+    #header-container0{
+        flex-direction: row;
+        height: 68px;
+        display: flex;
+    }
+
+    #header-container1{
+        display: none;
+    }
+
+    #courses-div article{
+        padding: 5px 0;
+        width: 100%;
+    }
+}
+
+@media (min-width: 660px) {
+    #header-container0{
+        display: none;
+    }
+
+    #header-container1{
+        flex-direction: row;
+        height: 68px;
+        display: flex;
+    }
 }

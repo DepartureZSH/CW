@@ -1,3 +1,4 @@
+from AuthenticationCenter.models import *
 from .models import *
 import rest_framework.exceptions
 from rest_framework import viewsets
@@ -23,6 +24,12 @@ class HomePage(APIView):
 class getCourses(APIView):
     def get(self, request):
         courses = Course.objects.all()
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        print(request.data)
+        courses = Course.objects.filter(mCode__startswith=request.data["mCode"], academic_year__in=request.data["Year"], semester__in=request.data["Semester"], name__contains=request.data["name"])
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 # Create your views here.
