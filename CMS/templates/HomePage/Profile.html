@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}">
+</head>
+<body>
+    <div id="page">
+        <header class="header-bar">
+            <div id="header-container">
+                <div id="header-img-container">
+                    <img id="uon-logo" src="{% static 'images/uon-top-left-logo.png' %}" alt="University of Nottingham Moodle">
+                </div>
+                <div id="nav-container">
+                    <nav class="menu-content">
+                        <ul class="menu" role="menu">
+                            <li class="menu-item" id="home" role="menuitem">Home</li>
+                            <li class="menu-item" id="modules" role="menuitem">My Modules</li>
+                            <li class="menu-item" id="more" role="menuitem">More</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="Profile">
+                <div id="nav-container">
+                    <nav class="menu-content">
+                        <ul class="menu" role="menu">
+                            <li class="menu-item" id="profile" role="menuitem" style="border-bottom: solid 3px; border-bottom-color: #792D85;">My Profile</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>

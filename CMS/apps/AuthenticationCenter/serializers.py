@@ -132,7 +132,8 @@ class AdminSerializer(serializers.ModelSerializer):
             dID=department,
             is_user=True,
             is_teacher=True,
-            is_admin=True
+            is_admin=True,
+            is_superuser=True
         )
         return instance
 

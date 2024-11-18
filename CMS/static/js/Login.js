@@ -24,7 +24,7 @@ form.addEventListener('submit', (event) => {
                 entries.forEach(([key, value]) => {
                     res += `${key}: ${value}\n`;
                     if(value==='success'){
-                        window.location.href=window.location.origin
+                        window.location.href=window.location.origin+"/homepage/"
                     }
                 });
                 alert(res);
