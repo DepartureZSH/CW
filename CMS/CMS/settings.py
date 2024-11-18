@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # My apps
     'apps.AuthenticationCenter',
     'apps.CourseCenter',
+
     # My middleware apps
     'corsheaders',
     'rest_framework',

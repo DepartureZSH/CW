@@ -20,5 +20,9 @@ class HomePage(APIView):
         ############################################
         return render(request, 'HomePage/index.html')
 
-
+class getCourses(APIView):
+    def get(self, request):
+        courses = Course.objects.all()
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 # Create your views here.
