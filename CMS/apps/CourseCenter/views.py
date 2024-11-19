@@ -29,7 +29,17 @@ class getCourses(APIView):
 
     def post(self, request):
         print(request.data)
-        courses = Course.objects.filter(mCode__startswith=request.data["mCode"], academic_year__in=request.data["Year"], semester__in=request.data["Semester"], name__contains=request.data["name"])
+        # courses = Course.objects.filter(mCode__startswith=request.data["mCode"], academic_year__in=request.data["Year"], semester__in=request.data["Semester"], name__contains=request.data["name"])
+        courses = Course.objects.filter(**request.data)
         serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CourseDetails(APIView):
+    def get(self, request):
+        return render(request, 'HomePage/CourseDetails.html')
+
+    def post(self, request):
+        courses = Course.objects.filter(mCode=request.data["mCode"])
+        serializer = CourseSerializerD1(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 # Create your views here.

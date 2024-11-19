@@ -3,43 +3,56 @@ const links = document.querySelectorAll('.link')
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
+    const data = {}
     var School = []
     var selectedLinks1 = document.querySelectorAll('#School .selected');
-    selectedLinks1.forEach(function (link){
-        School.push(link.textContent);
-    })
+    if(selectedLinks1.length > 0){
+        selectedLinks1.forEach(function (link){
+            School.push(link.textContent);
+        })
+        // data.School = School;
+    }
     var Campus = []
     var selectedLinks2 = document.querySelectorAll('#Campus .selected');
-    selectedLinks2.forEach(function (link){
-        Campus.push(link.textContent);
-    })
+    if(selectedLinks2.length > 0){
+        selectedLinks2.forEach(function (link){
+            Campus.push(link.textContent);
+        })
+        // data.Campus = Campus;
+    }
     var Faculty = []
     var selectedLinks3 = document.querySelectorAll('#Faculty .selected');
-    selectedLinks3.forEach(function (link){
-        Faculty.push(link.textContent);
-    });
+    if(selectedLinks3.length > 0){
+        selectedLinks3.forEach(function (link){
+            Faculty.push(link.textContent);
+        });
+        // data.Faculty = Faculty;
+    }
     var selectedLinks4 = document.querySelector('#mCode .selected');
-    var mCode = selectedLinks4.textContent.replaceAll("*","");
+    if(selectedLinks4){
+        var mCode = selectedLinks4.textContent.replaceAll("*","");
+        data.mCode__startswith = mCode
+    }else{
+        data.mCode__startswith = "COMP"
+    }
     var Year = [];
     var selectedLinks5 = document.querySelectorAll('#Year .selected');
-    selectedLinks5.forEach(function (link){
-        Year.push(link.textContent);
-    })
+    if(selectedLinks5.length > 0){
+        selectedLinks5.forEach(function (link){
+            Year.push(link.textContent);
+        })
+        data.academic_year__in = Year
+    }
     var Semester = []
     var selectedLinks6 = document.querySelectorAll('#Semester .selected');
-    selectedLinks6.forEach(function (link){
-        Semester.push(link.textContent);
-    })
+    if(selectedLinks6.length > 0){
+        selectedLinks6.forEach(function (link){
+            Semester.push(link.textContent);
+        })
+        data.semester__in = Semester;
+    }
     var name = document.forms["search"]["title"].value;
-    const data = {
-        School: School,
-        Campus: Campus,
-        Faculty: Faculty,
-        mCode: mCode,
-        Year: Year,
-        Semester: Semester,
-        name: name
-    };
+    data.name__contains = name;
     console.log(data);
     getCourses(data);
 });
@@ -102,8 +115,8 @@ function showCourses(data){
     tbody.innerHTML = ''
     data.forEach(function (value, index) {
         var course = document.createElement('article');
-        course.innerHTML = '<div id="course"><p>' + value.mCode + '\t' + value.name +
-            '</p><p>' + value.academic_year + '-' + value.semester + '</p></div>'
+        course.innerHTML = '<div id="course"><a href="CourseDetails?cID='+value.mCode+'"><p>' + value.mCode + '\t' + value.name +
+            '</p><p>' + value.academic_year + '-' + value.semester + '</p></a></div>'
         tbody.appendChild(course);
     })
 }
