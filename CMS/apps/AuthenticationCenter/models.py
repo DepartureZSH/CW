@@ -80,6 +80,9 @@ class Student(User):
     telephone = models.CharField(max_length=20, blank=True)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "Student:" + self.email
+
 class Teacher(User):
     wID = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
@@ -87,8 +90,14 @@ class Teacher(User):
     Telephone = models.CharField(max_length=20, blank=True)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "Teacher:" + self.email
+
 
 class Admin(User):
     aID = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
     dID = models.ForeignKey(Department, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Admin:" + self.email

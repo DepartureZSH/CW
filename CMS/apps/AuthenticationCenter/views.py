@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework import status
 
+from django.contrib.auth import login, logout
 from django.shortcuts import render
 from rest_framework.response import Response
 from .serializers import *
@@ -23,7 +24,9 @@ class AuthenticationPage(APIView):
     def post(self, request):
         try:
             user = User.objects.get(email=request.data['email'], password=request.data['password'])
-            return Response(data={"msg": 'success'}, status=status.HTTP_200_OK)
+            if user is not None:
+                login(request, user)
+                return Response(data={"msg": 'success'}, status=status.HTTP_200_OK)
         except:
             return Response(data={"msg": 'Incorrect username or password'}, status=status.HTTP_400_BAD_REQUEST)
         # if request.data["role"] == "student":

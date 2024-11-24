@@ -24,6 +24,7 @@ form.addEventListener('submit', (event) => {
                 entries.forEach(([key, value]) => {
                     res += `${key}: ${value}\n`;
                     if(value==='success'){
+                        // localStorage.setItem("userID", "value");
                         window.location.href=window.location.origin+"/homepage/"
                     }
                 });
