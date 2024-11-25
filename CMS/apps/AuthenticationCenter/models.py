@@ -12,11 +12,13 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_student(self, email, password=None, **extra_fields):
+        self.model = Student
         extra_fields.setdefault('is_user', True)
         return self._create_user(email, password, **extra_fields)
 
     def create_teacher(self, email, password=None, **extra_fields):
+        self.model = Teacher
         extra_fields.setdefault('is_user', True)
         extra_fields.setdefault('is_teacher', True)
         if extra_fields.get('is_teacher') is not True:
@@ -24,6 +26,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
     def create_administrators(self, email, password=None, **extra_fields):
+        self.model = Admin
         extra_fields.setdefault('is_user', True)
         extra_fields.setdefault('is_teacher', True)
         extra_fields.setdefault('is_admin', True)

@@ -18,9 +18,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('', include('AuthenticationCenter.urls')),
     path('homepage/', include('CourseCenter.urls')),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     url(r'^admin/', admin.site.urls)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

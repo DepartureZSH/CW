@@ -30,10 +30,12 @@
                         </div>
                         <form class="login-form" id="login">
                             <div class="login-form-username form-div">
+                                {% csrf_token %}
                                 <label for="username">Username/Email</label>
                                 <input type="text" name="username" placeholder="Username/Email">
                             </div>
                             <div class="login-form-password form-div">
+                                {% csrf_token %}
                                 <label for="password">Password</label>
                                 <input type="password" name="password" placeholder="Password">
                             </div>

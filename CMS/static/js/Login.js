@@ -6,7 +6,6 @@ form.addEventListener('submit', (event) => {
     if (isValid) {
         const data = get_data()
         if(data){
-            console.log(data)
             fetch(window.location.origin+'/Login/',{
                 method: 'POST',
                 headers: {
@@ -19,16 +18,15 @@ form.addEventListener('submit', (event) => {
                 }
                 return response.json();
             }).then(data => {
-                const entries = Object.entries(data)
-                let res = ""
-                entries.forEach(([key, value]) => {
-                    res += `${key}: ${value}\n`;
-                    if(value==='success'){
-                        // localStorage.setItem("userID", "value");
-                        window.location.href=window.location.origin+"/homepage/"
-                    }
-                });
-                alert(res);
+                if(data["msg"]==="success"){
+                    localStorage.setItem("token", data["token"]);
+                    localStorage.setItem("username", data["username"]);
+                    localStorage.setItem("role", data["role"]);
+                    alert("Successfully authentication!");
+                    window.location.href=window.location.origin+"/homepage/"
+                }else{
+                    alert(data["msg"]);
+                }
             }).catch((error) => {
                 console.error('Error:', error);
             });

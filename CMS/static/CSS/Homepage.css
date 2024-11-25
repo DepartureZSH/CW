@@ -198,6 +198,15 @@ a{
     color: #10263B;
 }
 
+div#CourseButtons{
+    display: flex;
+}
+
+div#CourseButtons div{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 @media (max-width: 660px) {
     #header-container0{
         flex-direction: row;

@@ -1,6 +1,7 @@
 const form = document.getElementById('search');
 const links = document.querySelectorAll('.link')
 
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     const data = {}
@@ -69,6 +70,7 @@ links.forEach(function (link){
 })
 
 getAllCourses()
+HelloUser()
 
 function getCourses(filter_data){
     fetch(window.location.origin + '/homepage/api/getcourses', {
@@ -113,10 +115,17 @@ function showCourses(data){
     // 获取元素
     var tbody = document.getElementById('courses-div');
     tbody.innerHTML = ''
+
     data.forEach(function (value, index) {
         var course = document.createElement('article');
         course.innerHTML = '<div id="course"><a href="CourseDetails?cID='+value.mCode+'"><p>' + value.mCode + '\t' + value.name +
-            '</p><p>' + value.academic_year + '-' + value.semester + '</p></a></div>'
+            '</p><p>' + value.academic_year + '-' + value.semester + '</p></a></div>' +
+            '<div id="CourseButtons"><div>Course Detail</div><div>Star</div></div>'
         tbody.appendChild(course);
     })
+}
+
+function HelloUser(){
+    const hello = document.getElementById('hello_User')
+    hello.innerHTML = '<p>Welcome, '+ localStorage.getItem("username") + '</p>'
 }
