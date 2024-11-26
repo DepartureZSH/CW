@@ -120,7 +120,10 @@ function showCourses(data){
         var course = document.createElement('article');
         course.innerHTML = '<div id="course"><a href="CourseDetails?cID='+value.mCode+'"><p>' + value.mCode + '\t' + value.name +
             '</p><p>' + value.academic_year + '-' + value.semester + '</p></a></div>' +
-            '<div id="CourseButtons"><div>Course Detail</div><div>Star</div></div>'
+            '<div id="CourseButtons">' +
+            '<button class="btn">Course Detail</button>' +
+            '<button class="btn">Star</button>' +
+            '</div>'
         tbody.appendChild(course);
     })
 }
