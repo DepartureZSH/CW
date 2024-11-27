@@ -121,10 +121,14 @@ function showCourses(data){
         course.innerHTML = '<div id="course"><a href="CourseDetails?cID='+value.mCode+'"><p>' + value.mCode + '\t' + value.name +
             '</p><p>' + value.academic_year + '-' + value.semester + '</p></a></div>' +
             '<div id="CourseButtons">' +
-            '<button class="btn">Course Detail</button>' +
-            '<button class="btn">Star</button>' +
+            '<button class="btn" id="Detail'+value.mCode+'">Course Detail</button>' +
+            '<button class="btn" id="Star'+value.mCode+'">Star</button>' +
             '</div>'
         tbody.appendChild(course);
+        var DetailButton = document.getElementById('Detail'+value.mCode);
+        DetailButton.addEventListener('click', function (){
+            window.location.href = window.location.origin + "/homepage/CourseDetails?cID=" + value.mCode;
+        })
     })
 }
 
