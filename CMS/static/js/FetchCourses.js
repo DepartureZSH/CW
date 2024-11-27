@@ -118,12 +118,52 @@ function showCourses(data){
 
     data.forEach(function (value, index) {
         var course = document.createElement('article');
-        course.innerHTML = '<div id="course"><a href="CourseDetails?cID='+value.mCode+'"><p>' + value.mCode + '\t' + value.name +
-            '</p><p>' + value.academic_year + '-' + value.semester + '</p></a></div>' +
+        const course_student =
+            '<div id="course">' +
+                '<a href="CourseDetails?cID='+value.mCode+'">' +
+                    '<p>' + value.mCode + '\t' + value.name + '</p>' +
+                    '<p>' + value.academic_year + '-' + value.semester + '</p>' +
+                '</a>' +
+            '</div>' +
             '<div id="CourseButtons">' +
-            '<button class="btn" id="Detail'+value.mCode+'">Course Detail</button>' +
-            '<button class="btn" id="Star'+value.mCode+'">Star</button>' +
+                '<div id="CourseButtons" class="left-flex">' +
+                    '<button class="btn" id="Detail'+value.mCode+'">Course Detail</button>' +
+                '</div>' +
+                '<div id="CourseButtons" class="right-flex">' +
+                    '<button class="btn" id="Star'+value.mCode+'">Star</button>' +
+                    '<button class="btn" id="Enroll'+value.mCode+'">Enroll</button>' +
+                '</div>' +
             '</div>'
+        const course_teacher =
+            '<div id="course">' +
+                '<a href="CourseDetails?cID='+value.mCode+'">' +
+                    '<p>' + value.mCode + '\t' + value.name + '</p>' +
+                    '<p>' + value.academic_year + '-' + value.semester + '</p>' +
+                '</a>' +
+            '</div>'
+        const course_admin =
+            '<div id="course">' +
+                '<a href="CourseDetails?cID='+value.mCode+'">' +
+                    '<p>' + value.mCode + '\t' + value.name + '</p>' +
+                    '<p>' + value.academic_year + '-' + value.semester + '</p>' +
+                '</a>' +
+            '</div>' +
+            '<div id="CourseButtons">' +
+                '<div id="CourseButtons" class="left-flex">' +
+                    '<button class="btn" id="Detail'+value.mCode+'">Course Detail</button>' +
+                '</div>' +
+                '<div id="CourseButtons" class="right-flex">' +
+                    '<button class="btn" id="Star'+value.mCode+'">Star</button>' +
+                    '<button class="btn" id="Enroll'+value.mCode+'">Modify</button>' +
+                '</div>' +
+            '</div>'
+        if(localStorage.getItem("role")==="student"){
+            course.innerHTML = course_student
+        }else if(localStorage.getItem("role")==="teacher"){
+            course.innerHTML = course_teacher
+        }else{
+            course.innerHTML = course_admin
+        }
         tbody.appendChild(course);
         var DetailButton = document.getElementById('Detail'+value.mCode);
         DetailButton.addEventListener('click', function (){

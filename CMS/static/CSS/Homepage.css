@@ -202,18 +202,33 @@ div#CourseButtons{
 }
 
 div#CourseButtons button{
-    /*text-align: center;*/
     width: 15%;
     min-width: fit-content;
-    margin-left: 0;
-    margin-right: 10px;
-    /*padding: 5px;*/
     border: none;
     background-color: silver;
 }
 
+div.left-flex button{
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+div.right-flex{
+    margin-left: auto !important;
+}
+
+div.right-flex button{
+    margin-left: 10px;
+    margin-right: 0;
+}
+
 div#CourseButtons button:hover{
     background-color: rgba(192, 192, 192, 0.5);
+}
+
+.last-flex{
+    margin-left: auto !important;
+    margin-right: 0 !important;
 }
 
 @media (max-width: 660px) {
