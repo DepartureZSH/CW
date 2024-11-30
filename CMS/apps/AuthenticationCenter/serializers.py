@@ -84,10 +84,12 @@ class TeacherSerializer(serializers.ModelSerializer):
         if department is None:
             raise serializers.ValidationError("没有找到匹配的dID")
 
+        password = make_password(validated_data["password"])
+
         instance = Teacher.objects.create(
             username=validated_data["username"],
             email=validated_data["email"],
-            password=validated_data["password"],
+            password=password,
             dID=department,
             is_user=True,
             is_teacher=True
@@ -130,10 +132,12 @@ class AdminSerializer(serializers.ModelSerializer):
         if department is None:
             raise serializers.ValidationError("没有找到匹配的dID")
 
+        password = make_password(validated_data["password"])
+
         instance = Admin.objects.create(
             username=validated_data["username"],
             email=validated_data["email"],
-            password=validated_data["password"],
+            password=password,
             dID=department,
             is_user=True,
             is_teacher=True,

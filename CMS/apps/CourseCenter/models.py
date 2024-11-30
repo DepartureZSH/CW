@@ -20,4 +20,21 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+
+class Enrollment(models.Model):
+    rID = models.AutoField(primary_key=True)
+    cID = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
+    sID = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
+
+    def __str__(self):
+        return self.cID + "-" + self.sID
+
+
+class Stars(models.Model):
+    rID = models.AutoField(primary_key=True)
+    cID = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
+    sID = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
+
+    def __str__(self):
+        return self.cID + "-" + self.sID
 # Create your models here.

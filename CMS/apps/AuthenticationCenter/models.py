@@ -58,6 +58,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.email.split("@")[0]
 
+    def get_id(self):
+        return self.id
+
     def __str__(self):
         return self.email
 
@@ -86,6 +89,9 @@ class Student(User):
     def __str__(self):
         return "Student:" + self.email
 
+    def get_id(self):
+        return self.sID
+
 class Teacher(User):
     wID = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
@@ -96,6 +102,8 @@ class Teacher(User):
     def __str__(self):
         return "Teacher:" + self.email
 
+    def get_id(self):
+        return self.wID
 
 class Admin(User):
     aID = models.AutoField(primary_key=True)
@@ -104,3 +112,6 @@ class Admin(User):
 
     def __str__(self):
         return "Admin:" + self.email
+
+    def get_id(self):
+        return self.aID

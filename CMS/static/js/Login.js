@@ -20,6 +20,7 @@ form.addEventListener('submit', (event) => {
             }).then(data => {
                 if(data["msg"]==="success"){
                     localStorage.setItem("token", data["token"]);
+                    localStorage.setItem("id", data["id"]);
                     localStorage.setItem("username", data["username"]);
                     localStorage.setItem("role", data["role"]);
                     alert("Successfully authentication!");
