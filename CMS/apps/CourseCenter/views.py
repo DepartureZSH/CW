@@ -42,4 +42,14 @@ class CourseDetails(APIView):
         courses = Course.objects.filter(mCode=request.data["mCode"])
         serializer = CourseSerializerD1(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CourseStar(APIView):
+    def get(self, request):
+        print(request.data)
+        # return render(request, 'HomePage/CourseDetails.html')
+
+    def post(self, request):
+        print(request.data)
+        return Response("ok", status=status.HTTP_200_OK)
+
 # Create your views here.

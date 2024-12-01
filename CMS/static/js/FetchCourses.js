@@ -173,8 +173,30 @@ function showCourses(data){
             window.location.href = window.location.origin + "/homepage/CourseDetails?cID=" + value.mCode;
         })
         if(localStorage.getItem("role")==="student"){
+            console.log(value)
             const StarButton = document.getElementById('Star' + value.mCode);
             StarButton.addEventListener('click', function (){
+                let star_data = {
+                    sID: localStorage.getItem("id"),
+                    cID: value.cID
+                }
+                fetch(window.location.origin + '/homepage/api/star', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(star_data)
+                }).then(response => {
+                    if (!response.ok) {
+                        console.log('Network response was not ok ' + response)
+                    }
+                    return response.json();
+                }).then(data => {
+                    alert(data)
+                    // showCourses(data)
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
                 alert("Student Star\n id:" + localStorage.getItem("id") + "\n courseid:" + value.mCode)
             })
             const EnrollButton = document.getElementById('Enroll' + value.mCode);
