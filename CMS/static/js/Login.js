@@ -61,7 +61,6 @@ function get_data() {
 
 }
 
-
 function validateForm() {
     // 获取输入字段的值
     var user = document.forms["login"]["username"].value;
@@ -88,3 +87,9 @@ function validateForm() {
     // 如果所有检查都通过，返回true
     return true;
 }
+
+window.addEventListener('onload', (event) => {
+    if(localStorage.getItem("token")){
+        window.location.href=window.location.origin+"/homepage/"
+    }
+})

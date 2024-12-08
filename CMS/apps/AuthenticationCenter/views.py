@@ -36,6 +36,7 @@ class AuthenticationPage(APIView):
                         login(request, user)
                         res = {
                             "msg": 'success',
+                            "id": user.get_id(),
                             'username': user.get_short_name(),
                             'role': "admin",
                             'token': token.key
@@ -47,6 +48,7 @@ class AuthenticationPage(APIView):
                         login(request, user)
                         res = {
                             "msg": 'success',
+                            "id": user.get_id(),
                             'username': user.get_short_name(),
                             'role': "teacher",
                             'token': token.key
@@ -99,10 +101,10 @@ class RegisterPage(APIView):
         MyUserManager = UserManager()
         if request.data["role"] == "student":
             serializer = StudentSerializer(data=request.data)
-            if serializer.is_valid():
+            # if serializer.is_valid():
                 # 保存序列化后的数据到student数据库
                 # serializer.save()
-                data = serializer.create(serializer.data)
+                # data = serializer.create(serializer.data)
                 # MyUserManager.create_student(**serializer.data)
                 # print(serializer.data)
         elif request.data["role"] == "teacher":

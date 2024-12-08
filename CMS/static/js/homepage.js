@@ -1,14 +1,33 @@
 const form = document.getElementById('search');
 const links = document.querySelectorAll('.link')
+const modules = document.getElementById('modules');
+const profile = document.getElementById('profile');
 
 function start(){
+    nav_init()
     getAllCourses()
     HelloUser()
+    form_init()
+}
+
+function nav_init(){
+    home.addEventListener('click', ()=>{
+        window.location.href = window.location.origin + "/homepage/";
+    })
+    modules.addEventListener('click', ()=>{
+        window.location.href = window.location.origin + "/mymodules/";
+    })
+    profile.addEventListener('click', ()=>{
+        window.location.href = window.location.origin + "/profile/";
+    })
+}
+
+function form_init(){
     form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const data = {}
-    var School = []
-    var selectedLinks1 = document.querySelectorAll('#School .selected');
+        event.preventDefault();
+        const data = {}
+        var School = []
+        var selectedLinks1 = document.querySelectorAll('#School .selected');
         if(selectedLinks1.length > 0){
             selectedLinks1.forEach(function (link){
                 School.push(link.textContent);
@@ -56,10 +75,8 @@ function start(){
         }
         var name = document.forms["search"]["title"].value;
         data.name__contains = name;
-        console.log(data);
         getCourses(data);
     });
-
     links.forEach(function (link){
         link.addEventListener('click', function (event){
             event.preventDefault()
@@ -112,8 +129,7 @@ function getAllCourses(){
 }
 
 function showCourses(data){
-    // 获取元素
-    var tbody = document.getElementById('courses-div');
+    var tbody = document.getElementById('courses');
     tbody.innerHTML = ''
     var course_info = ''
     var course = document.createElement('article');
@@ -121,41 +137,41 @@ function showCourses(data){
     data.forEach(function (value, index) {
         if(localStorage.getItem("role")==="student"){
             course_info =
-                '<div id="course">' +
+                '<div class="course">' +
                     '<a href="CourseDetails?cID=' + value.mCode + '">' +
                         '<p>' + value.mCode + '\t' + value.name + '</p>' +
                         '<p>' + value.academic_year + '-' + value.semester + '</p>' +
                     '</a>' +
                 '</div>' +
-                '<div id="CourseButtons">' +
-                    '<div id="CourseButtons" class="left-flex">' +
+                '<div class="CourseButtons">' +
+                    '<div class="CourseButtons left-flex">' +
                         '<button class="btn" id="Detail' + value.mCode + '">Course Detail</button>' +
                     '</div>' +
-                    '<div id="CourseButtons" class="right-flex">' +
+                    '<div class="CourseButtons right-flex">' +
                         '<button class="btn" id="Star' + value.mCode + '">Star</button>' +
                         '<button class="btn" id="Enroll' + value.mCode + '">Enroll</button>' +
                     '</div>' +
                 '</div>'
         }else if(localStorage.getItem("role")==="admin"){
             course_info =
-                '<div id="course">' +
+                '<div class="course">' +
                     '<a href="CourseDetails?cID=' + value.mCode + '">' +
                     '<p>' + value.mCode + '\t' + value.name + '</p>' +
                     '<p>' + value.academic_year + '-' + value.semester + '</p>' +
                     '</a>' +
                 '</div>' +
-                '<div id="CourseButtons">' +
-                    '<div id="CourseButtons" class="left-flex">' +
+                '<div class="CourseButtons">' +
+                    '<div class="CourseButtons left-flex">' +
                         '<button class="btn" id="Detail' + value.mCode + '">Course Detail</button>' +
                     '</div>' +
-                    '<div id="CourseButtons" class="right-flex">' +
+                    '<div class="CourseButtons right-flex">' +
                         '<button class="btn" id="Star' + value.mCode + '">Star</button>' +
                         '<button class="btn" id="Modify' + value.mCode + '">Modify</button>' +
                     '</div>' +
                 '</div>'
         }else{
             course_info =
-                '<div id="course">' +
+                '<div class="course">' +
                     '<a href="CourseDetails?cID=' + value.mCode + '">' +
                         '<p>' + value.mCode + '\t' + value.name + '</p>' +
                         '<p>' + value.academic_year + '-' + value.semester + '</p>' +
@@ -173,11 +189,10 @@ function showCourses(data){
             window.location.href = window.location.origin + "/homepage/CourseDetails?cID=" + value.mCode;
         })
         if(localStorage.getItem("role")==="student"){
-            console.log(value)
             const StarButton = document.getElementById('Star' + value.mCode);
             StarButton.addEventListener('click', function (){
                 let star_data = {
-                    sID: localStorage.getItem("id"),
+                    sID: parseInt(localStorage.getItem("id")),
                     cID: value.cID
                 }
                 fetch(window.location.origin + '/homepage/api/star', {
@@ -192,16 +207,38 @@ function showCourses(data){
                     }
                     return response.json();
                 }).then(data => {
-                    alert(data)
+                    alert(data["msg"])
                     // showCourses(data)
                 }).catch((error) => {
                     console.error('Error:', error);
                 });
-                alert("Student Star\n id:" + localStorage.getItem("id") + "\n courseid:" + value.mCode)
+                alert("Student star\n Student id:" + localStorage.getItem("id") + "\n Course id:" + value.mCode)
             })
+
             const EnrollButton = document.getElementById('Enroll' + value.mCode);
             EnrollButton.addEventListener('click', function (){
-                alert("Student Enroll\n id" + localStorage.getItem("id") + "\n courseid:" + value.mCode)
+                let star_data = {
+                    sID: parseInt(localStorage.getItem("id")),
+                    cID: value.cID
+                }
+                fetch(window.location.origin + '/homepage/api/enroll', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(star_data)
+                }).then(response => {
+                    if (!response.ok) {
+                        console.log('Network response was not ok ' + response)
+                    }
+                    return response.json();
+                }).then(data => {
+                    alert(data["msg"])
+                    // showCourses(data)
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
+                alert("Student enroll\n Student id:" + localStorage.getItem("id") + "\n Course id:" + value.mCode)
             })
         }else if(localStorage.getItem("role")==="admin"){
             const ModifyButton = document.getElementById('Modify' + value.mCode);

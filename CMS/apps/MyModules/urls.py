@@ -7,11 +7,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     # 将 {your web prefix}/api/{your_app_name}/ 的所有请求打给views.{views_class_name_1}
     path('', views.HomePage.as_view(), name='home'),
-    path('api/getcourses', views.getCourses.as_view(), name='allCourse'),
     path(r'CourseDetails', views.CourseDetails.as_view(), name='coursedetails'),
-    path('api/star', views.CourseStar.as_view(), name='star'),
-    path('api/enroll', views.CourseEnroll.as_view(), name='enroll'),
-    path('api/getcoursesbymcode', views.CourseDetails.as_view(), name='getcoursesbymcode'),
+    path('api/getenrollments', views.getEnrollments.as_view(), name='allEnrollments'),
+    path('api/getstars', views.getStars.as_view(), name='allStars'),
     # 将 {your web prefix}/api/{your_app_name}/{int num}/ 的所有请求打给views.{views_class_name_2}
     # 并附上参数 int pk = num
     # path(r'<int:pk>/', views.{views_class_name_2}.as_view(), name='neckname2'),

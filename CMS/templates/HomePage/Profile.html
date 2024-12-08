@@ -2,18 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
+    <title>Profile</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/HeaderStyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/Profile.css' %}">
 </head>
 <body>
     <div id="page">
         <header class="header-bar">
-            <div id="header-container">
-                <div id="header-img-container">
-                    <img id="uon-logo" src="{% static 'images/uon-top-left-logo.png' %}" alt="University of Nottingham Moodle">
+            <div class="header-container0">
+                <div class="nav-container">
+                    <nav class="menu-content">
+                        <ul class="menu" role="menu">
+                            <li class="menu-item" id="menu" role="menuitem">Menu</li>
+                        </ul>
+                    </nav>
                 </div>
-                <div id="nav-container">
+            </div>
+            <div class="header-container1">
+                <div class="header-img-container">
+                    <img class="uon-logo" src="{% static 'images/uon-top-left-logo.png' %}" alt="University of Nottingham Moodle">
+                </div>
+                <div class="nav-container">
                     <nav class="menu-content">
                         <ul class="menu" role="menu">
                             <li class="menu-item" id="home" role="menuitem">Home</li>
@@ -23,8 +34,8 @@
                     </nav>
                 </div>
             </div>
-            <div id="Profile">
-                <div id="nav-container">
+            <div class="Profile">
+                <div class="nav-container">
                     <nav class="menu-content">
                         <ul class="menu" role="menu">
                             <li class="menu-item" id="profile" role="menuitem" style="border-bottom: solid 3px; border-bottom-color: #792D85;">My Profile</li>
@@ -33,6 +44,50 @@
                 </div>
             </div>
         </header>
+        <div class="main ProfileMain">
+            <div class="containers container1">
+                <div id="PublicProfile" class="header-container">
+                    <h2>Public profile</h2>
+                </div>
+                <div id="Role"><p>Role: ***</p></div>
+                <div id="User"><p>User: ***</p></div>
+                <div id="Gender"><p>Gender: ***</p></div>
+                <div id="Telephone"><p>Telephone: ***</p></div>
+                <div id="Email"><p>Email: ***</p></div>
+            </div>
+            <div class="containers container2 last-container">
+                <div class="header-container">
+                    <h2>Permissions</h2>
+                </div>
+                <div id="isUser"><p>User: ***</p></div>
+                <div id="isTeacher"><p>Teacher: ***</p></div>
+                <div id="isAdmin"><p>Admin: ***</p></div>
+            </div>
+            <div class="containers container1">
+                <div class="header-container">
+                    <h2>Department</h2>
+                </div>
+                <div id="School"><p>School: ***</p></div>
+                <div id="Campus"><p>Campus: ***</p></div>
+                <div id="Faculty"><p>Faculty: ***</p></div>
+            </div>
+            <div class="containers container2 last-container">
+                <div class="header-container">
+                    <h2>QAs</h2>
+                </div>
+                <p><b>QA: </b><a href="api/QA1">How to find a certain course?</a></p>
+                <p><b>QA: </b><a href="api/QA2">How to enroll in a course?</a></p>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>Powered by Shuhai Zhang</p>
+        </footer>
     </div>
+    {% load static %}
+    <script
+            type="text/javascript"
+            charset="utf-8"
+            src="{% static 'js/Profile.js' %}"
+    ></script>
 </body>
 </html>

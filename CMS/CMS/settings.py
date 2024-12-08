@@ -42,11 +42,14 @@ INSTALLED_APPS = [
     # My apps
     'apps.AuthenticationCenter',
     'apps.CourseCenter',
+    'apps.MyModules',
+    'apps.MyProfile',
 
     # My middleware apps
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+
 ]
 
 # rest_framework plugin

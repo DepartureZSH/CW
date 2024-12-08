@@ -5,12 +5,14 @@
     <title>Homepage</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/HeaderStyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/CourseContainerStyle.css' %}">
 </head>
 <body>
     <div id="page">
         <header class="header-bar">
-            <div id="header-container0">
-                <div id="nav-container">
+            <div class="header-container0">
+                <div class="nav-container">
                     <nav class="menu-content">
                         <ul class="menu" role="menu">
                             <li class="menu-item" id="menu" role="menuitem">Menu</li>
@@ -18,11 +20,11 @@
                     </nav>
                 </div>
             </div>
-            <div id="header-container1">
-                <div id="header-img-container">
-                    <img id="uon-logo" src="{% static 'images/uon-top-left-logo.png' %}" alt="University of Nottingham Moodle">
+            <div class="header-container1">
+                <div class="header-img-container">
+                    <img class="uon-logo" src="{% static 'images/uon-top-left-logo.png' %}" alt="University of Nottingham Moodle">
                 </div>
-                <div id="nav-container">
+                <div class="nav-container">
                     <nav class="menu-content">
                         <ul class="menu" role="menu">
                             <li class="menu-item" id="home" role="menuitem" style="border-bottom: solid 3px; border-bottom-color: #792D85;">Home</li>
@@ -32,9 +34,8 @@
                     </nav>
                 </div>
             </div>
-
-            <div id="Profile">
-                <div id="nav-container">
+            <div class="Profile">
+                <div class="nav-container">
                     <nav class="menu-content">
                         <ul class="menu" role="menu">
                             <li class="menu-item" id="profile" role="menuitem">Profile</li>
@@ -43,8 +44,8 @@
                 </div>
             </div>
         </header>
-        <div id="main">
-            <div id="filter-bar">
+        <div class="main">
+            <div class="filter-bar">
                 <div id="hello_User"></div>
                 <div class="row">
                     <div class="filter-field">
@@ -108,17 +109,19 @@
                     </div>
                 </div>
             </div>
-            <div id="courses-div">
+            <div id="courses" class="courses-div">
 
             </div>
         </div>
+        <footer class="footer">
+            <p>Powered by Shuhai Zhang</p>
+        </footer>
     </div>
     {% load static %}
     <script
             type="text/javascript"
             charset="utf-8"
-            async=""
-            src="{% static 'js/FetchCourses.js' %}"
+            src="{% static 'js/homepage.js' %}"
     ></script>
 </body>
 </html>

@@ -72,12 +72,6 @@ class Department(models.Model):
 
     def __str__(self):
         return "{}, {}, {}".format(self.Faculty,self.Campus,self.School)
-    # def getID(self, school, campus, faculty):
-    #     try:
-    #         ID = self.objects.get(School=school, Campus=campus, Faculty=faculty).dID
-    #     except:
-    #         ID = None
-    #     return ID
 
 class Student(User):
     sID = models.AutoField(primary_key=True)
