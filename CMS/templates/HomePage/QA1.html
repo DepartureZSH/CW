@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
+    <title>QA</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/HeaderStyle.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/CourseContainerStyle.css' %}">
 </head>
 <body>
     <div id="page">
@@ -28,7 +27,7 @@
                     <nav class="menu-content">
                         <ul class="menu" role="menu">
                             <li class="menu-item" id="home" role="menuitem">Home</li>
-                            <li class="menu-item" id="modules" role="menuitem" style="border-bottom: solid 3px; border-bottom-color: #792D85;">My Modules</li>
+                            <li class="menu-item" id="modules" role="menuitem">My Modules</li>
                             <li class="menu-item" id="more" role="menuitem">More</li>
                         </ul>
                     </nav>
@@ -44,8 +43,28 @@
                 </div>
             </div>
         </header>
-        <div id="Module" class="main ModuleMain">
-
+        <div class="main">
+            <h1>Course Selection Guide</h1>
+            <ol>
+                <li>
+                    <p>Go to the <a href="../../../homepage/" target="_blank">Home Page</a>.</p>
+                </li>
+                <li>
+                    <p>In the filter bar, select the desired tags:</p>
+                    <ul>
+                        <li>School</li>
+                        <li>Campus</li>
+                        <li>Faculty</li>
+                        <li>Code</li>
+                        <li>Year</li>
+                        <li>Semester</li>
+                    </ul>
+                    <p>Or, enter the desired keyword in the Title bar.</p>
+                </li>
+                <li>
+                    <p>Click the 'Search' button to view the available courses.</p>
+                </li>
+            </ol>
         </div>
         <footer class="footer">
             <p>Powered by Shuhai Zhang</p>
@@ -56,11 +75,6 @@
             type="text/javascript"
             charset="utf-8"
             src="{% static 'js/HeaderInit.js' %}"
-    ></script>
-    <script
-            type="text/javascript"
-            charset="utf-8"
-            src="{% static 'js/mymodules.js' %}"
     ></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ class StudentSerializer(serializers.ModelSerializer):
     faculty = serializers.CharField(max_length=255)
 
     def validate_email(self, email):
+        # check if there is a same student already
         if Student.objects.filter(email=email).exists():
             raise serializers.ValidationError("This username is already taken.")
         return email
@@ -58,6 +59,7 @@ class TeacherSerializer(serializers.ModelSerializer):
     faculty = serializers.CharField(max_length=255)
 
     def validate_email(self, email):
+        # check if there is a same teacher already
         if Teacher.objects.filter(email=email).exists():
             raise serializers.ValidationError("This username is already taken.")
         return email
@@ -106,6 +108,7 @@ class AdminSerializer(serializers.ModelSerializer):
     faculty = serializers.CharField(max_length=255)
 
     def validate_email(self, email):
+        # check if there is a same admin already
         if Admin.objects.filter(email=email).exists():
             raise serializers.ValidationError("This username is already taken.")
         return email

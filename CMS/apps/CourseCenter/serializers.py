@@ -19,6 +19,7 @@ class CourseSerializerD1(serializers.ModelSerializer):
 class EnrollmentSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
+        # check if there is a same enrollment already
         if Enrollment.objects.filter(sID=data['sID'], cID=data['cID']):
             raise serializers.ValidationError({'error': 'Enrollment already exists.'})
         return data
@@ -30,6 +31,7 @@ class EnrollmentSerializer(serializers.ModelSerializer):
 class StarSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
+        # check if there is a same star already
         if Star.objects.filter(sID=data['sID'], cID=data['cID']):
             raise serializers.ValidationError({'error': 'Star already exists.'})
         return data

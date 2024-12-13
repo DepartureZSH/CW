@@ -26,32 +26,32 @@ class HomePage(APIView):
 
 class getCourses(APIView):
     def get(self, request):
+        # retrieve all courses
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        print(request.data)
-        # courses = Course.objects.filter(mCode__startswith=request.data["mCode"], academic_year__in=request.data["Year"], semester__in=request.data["Semester"], name__contains=request.data["name"])
+        # retrieve courses with certain conditions
         courses = Course.objects.filter(**request.data)
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CourseDetails(APIView):
     def get(self, request):
+        # redirect to HomePage/CourseDetails.html
         return render(request, 'HomePage/CourseDetails.html')
 
     def post(self, request):
+        # retrieve course details with certain mCode
         courses = Course.objects.filter(mCode=request.data["mCode"])
         serializer = CourseSerializerD1(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CourseStar(APIView):
-    def get(self, request):
-        print(request.data)
-        # return render(request, 'HomePage/CourseDetails.html')
 
     def post(self, request):
+        # Create stars with certain student id
         sID = Student.objects.get(id=request.data['sID']).sID
         serializer = StarSerializer(data={'sID': sID, 'cID':request.data['cID']})
         if serializer.is_valid():
@@ -66,11 +66,9 @@ class CourseStar(APIView):
         # return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CourseEnroll(APIView):
-    def get(self, request):
-        print(request.data)
-        # return render(request, 'HomePage/CourseDetails.html')
 
     def post(self, request):
+        # Create enrollment with certain student id
         sID = Student.objects.get(id=request.data['sID']).sID
         serializer = EnrollmentSerializer(data={'sID': sID, 'cID':request.data['cID']})
         if serializer.is_valid():
@@ -84,7 +82,5 @@ class CourseEnroll(APIView):
                 Enrollment.objects.get(sID=sID, cID=request.data['cID']).delete()
                 return Response(data={"msg": 'Successfully unenrollment!'}, status=status.HTTP_201_CREATED)
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        # return Response(serializer.data, status=status.HTTP_200_OK)
 
 # Create your views here.

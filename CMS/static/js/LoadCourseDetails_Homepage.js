@@ -4,7 +4,10 @@ const data = {
     mCode: mCode,
 };
 
-getCourses(data);
+function start(){
+    getCourses(data);
+}
+
 
 function getCourses(data){
     fetch(window.location.origin + '/homepage/api/getcoursesbymcode', {
@@ -30,7 +33,8 @@ function showCoursesDetails(data){
     // 获取元素
     var tbody = document.getElementById('CourseDetails');
     tbody.innerHTML = ''
-    const Details = {
+    if(localStorage.getItem("role")){
+        const Details = {
         name: "<h1>" + data.name + "</h1>",
         Academic_year: '<p>Academic Year: <b>'+ data.academic_year +'</b></p>',
         mcode: '<p>Module code: <b>'+ data.mCode +'</b></p>',
@@ -46,12 +50,14 @@ function showCoursesDetails(data){
         assessment_period: '<h1>Assessment period</h1>' + data.assessment_period,
         outcomes: '<h1>Outcomes</h1>' + data.outcomes,
     }
-    for (let key in Details) {
-        if (Details.hasOwnProperty(key)) {
-            var coursedetail = document.createElement('div');
-            coursedetail.innerHTML = Details[key]
-            tbody.appendChild(coursedetail);
-            // console.log(key + ": " + data[key]);
+        for (let key in Details) {
+            if (Details.hasOwnProperty(key)) {
+                var coursedetail = document.createElement('div');
+                coursedetail.innerHTML = Details[key]
+                tbody.appendChild(coursedetail);
+            }
         }
     }
 }
+
+window.addEventListener("load", start, false)

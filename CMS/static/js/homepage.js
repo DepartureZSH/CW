@@ -1,25 +1,11 @@
 const form = document.getElementById('search');
 const links = document.querySelectorAll('.link')
-const modules = document.getElementById('modules');
-const profile = document.getElementById('profile');
 
 function start(){
-    nav_init()
+    // nav_init()
     getAllCourses()
     HelloUser()
     form_init()
-}
-
-function nav_init(){
-    home.addEventListener('click', ()=>{
-        window.location.href = window.location.origin + "/homepage/";
-    })
-    modules.addEventListener('click', ()=>{
-        window.location.href = window.location.origin + "/mymodules/";
-    })
-    profile.addEventListener('click', ()=>{
-        window.location.href = window.location.origin + "/profile/";
-    })
 }
 
 function form_init(){
@@ -138,7 +124,7 @@ function showCourses(data){
         if(localStorage.getItem("role")==="student"){
             course_info =
                 '<div class="course">' +
-                    '<a href="CourseDetails?cID=' + value.mCode + '">' +
+                    '<a href="CourseDetails?mCode=' + value.mCode + '">' +
                         '<p>' + value.mCode + '\t' + value.name + '</p>' +
                         '<p>' + value.academic_year + '-' + value.semester + '</p>' +
                     '</a>' +
@@ -172,7 +158,7 @@ function showCourses(data){
         }else{
             course_info =
                 '<div class="course">' +
-                    '<a href="CourseDetails?cID=' + value.mCode + '">' +
+                    '<a href="CourseDetails?mCode=' + value.mCode + '">' +
                         '<p>' + value.mCode + '\t' + value.name + '</p>' +
                         '<p>' + value.academic_year + '-' + value.semester + '</p>' +
                     '</a>' +

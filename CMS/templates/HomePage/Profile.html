@@ -38,7 +38,7 @@
                 <div class="nav-container">
                     <nav class="menu-content">
                         <ul class="menu" role="menu">
-                            <li class="menu-item" id="profile" role="menuitem" style="border-bottom: solid 3px; border-bottom-color: #792D85;">My Profile</li>
+                            <li class="menu-item" id="profile" role="menuitem" style="border-bottom: solid 3px; border-bottom-color: #792D85;">Profile</li>
                         </ul>
                     </nav>
                 </div>
@@ -75,8 +75,8 @@
                 <div class="header-container">
                     <h2>QAs</h2>
                 </div>
-                <p><b>QA: </b><a href="api/QA1">How to find a certain course?</a></p>
-                <p><b>QA: </b><a href="api/QA2">How to enroll in a course?</a></p>
+                <p><b>QA: </b><a href="api/QA?id=1">How to find a certain course?</a></p>
+                <p><b>QA: </b><a href="api/QA?id=2">How to enroll in a course?</a></p>
             </div>
         </div>
         <footer class="footer">
@@ -84,6 +84,11 @@
         </footer>
     </div>
     {% load static %}
+    <script
+            type="text/javascript"
+            charset="utf-8"
+            src="{% static 'js/HeaderInit.js' %}"
+    ></script>
     <script
             type="text/javascript"
             charset="utf-8"

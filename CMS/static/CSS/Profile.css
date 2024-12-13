@@ -29,6 +29,9 @@ a{
     height: fit-content;
 }
 
+.btn:hover{
+    background-color: lightgray;
+}
 
 @media (max-width: 850px) {
     .container1{

@@ -6,6 +6,17 @@ except:
     from ..AuthenticationCenter.models import *
 from rest_framework import serializers
 
+class EnrollmentSerializerD0(serializers.ModelSerializer):
+    def validate(self, data):
+        # check if there is a same enrollment already
+        if Enrollment.objects.filter(sID=data['sID'], cID=data['cID']):
+            raise serializers.ValidationError({'error': 'Enrollment already exists.'})
+        return data
+
+    class Meta:
+        model = Enrollment
+        fields = '__all__'
+
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
@@ -23,3 +34,13 @@ class CourseSerializerD1(serializers.ModelSerializer):
         model = Course
         fields = '__all__'
         depth = 1
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = '__all__'

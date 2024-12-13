@@ -53,6 +53,10 @@ div.CourseButtons button:hover{
     background-color: rgba(192, 192, 192, 0.5);
 }
 
+#addCourse:hover{
+    cursor: pointer;
+}
+
 @media (max-width: 660px) {
     #courses article{
         padding: 5px 0;

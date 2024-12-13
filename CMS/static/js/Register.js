@@ -1,51 +1,55 @@
 const form = document.getElementById('register');
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault()
-    var isValid = validateForm();
-    if (isValid) {
-        var role = document.forms["register"]["role"].value;
-        var campus = document.forms["register"]["campus"].value;
-        var faculty = document.forms["register"]["faculty"].value;
-        var username = document.forms["register"]["email"].value.split('@')[0];
-        var email = document.forms["register"]["email"].value;
-        var password = document.forms["register"]["password"].value;
-        const data = {
-            role: role,
-            school: "University of Nottingham",
-            campus: campus,
-            faculty: faculty,
-            username: username,
-            email: email,
-            password: password
-        };
+function start(){
+    form_init();
+}
 
-        fetch(window.location.origin+'/Register/',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(response=>{
-            if (!response.ok) {
-                console.log('Network response was not ok ' + response)
-            }
-            return response.json();
-        }).then(data => {
-            const entries = Object.entries(data)
-            let res = ""
-            entries.forEach(([key, value]) => {
-                res += `${key}: ${value}\n`;
-                if(value==='success'){
-                    window.location.href=window.location.origin
+function form_init(){
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        var isValid = validateForm();
+        if (isValid) {
+            var role = document.forms["register"]["role"].value;
+            var campus = document.forms["register"]["campus"].value;
+            var faculty = document.forms["register"]["faculty"].value;
+            var username = document.forms["register"]["email"].value.split('@')[0];
+            var email = document.forms["register"]["email"].value;
+            var password = document.forms["register"]["password"].value;
+            const data = {
+                role: role,
+                school: "University of Nottingham",
+                campus: campus,
+                faculty: faculty,
+                username: username,
+                email: email,
+                password: password
+            };
+
+            fetch(window.location.origin+'/Register/',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response=>{
+                if (!response.ok) {
+                    console.log('Network response was not ok ' + response)
                 }
+                return response.json();
+            }).then(data => {
+                const entries = Object.entries(data)
+                let res = ""
+                entries.forEach(([key, value]) => {
+                    res += `${key}: ${value}\n`;
+                });
+                alert(res);
+                window.location.href=window.location.origin;
+            }).catch((error) => {
+                console.error('Error:', error);
             });
-            alert(res);
-        }).catch((error) => {
-            console.error('Error:', error);
-        });
-    }
-})
+        }
+    })
+}
 
 function validateForm() {
     console.log("validateForm first")
@@ -88,3 +92,5 @@ function validateForm() {
     // 如果所有检查都通过，返回true
     return true;
 }
+
+window.addEventListener("load", start, false)

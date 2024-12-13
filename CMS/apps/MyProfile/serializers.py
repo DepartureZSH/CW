@@ -10,3 +10,9 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = '__all__'
         depth = 1
+
+class TeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = '__all__'
+        depth = 1

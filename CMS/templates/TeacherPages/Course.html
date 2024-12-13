@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/HeaderStyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/Form.css' %}">
+</head>
+<body>
+    <div id="page">
+        <header class="header-bar">
+                <div class="header-container0">
+                    <div class="nav-container">
+                        <nav class="menu-content">
+                            <ul class="menu" role="menu">
+                                <li class="menu-item" id="menu" role="menuitem">Menu</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="header-container1">
+                    <div class="header-img-container">
+                        <img class="uon-logo" src="{% static 'images/uon-top-left-logo.png' %}" alt="University of Nottingham Moodle">
+                    </div>
+                    <div class="nav-container">
+                        <nav class="menu-content">
+                            <ul class="menu" role="menu">
+                                <li class="menu-item" id="home" role="menuitem">Home</li>
+                                <li class="menu-item" id="modules" role="menuitem" style="border-bottom: solid 3px; border-bottom-color: #792D85;">My Modules</li>
+                                <li class="menu-item" id="more" role="menuitem">More</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="Profile">
+                    <div class="nav-container">
+                        <nav class="menu-content">
+                            <ul class="menu" role="menu">
+                                <li class="menu-item" id="profile" role="menuitem">Profile</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+        <div class="main">
+            <div id="content" class="colM">
+                <h1>Course</h1>
+                <div id="content-main">
+                    <form id="course_form">
+                        <div>
+                            <div class="form-row field-name">
+                                <div>
+                                    <label class="required" for="id_name">Name:</label>
+                                    <input type="text" name="name" class="vTextField" maxlength="255" required="" id="id_name">
+                                </div>
+                            </div>
+                            <div class="form-row field-academic_year">
+                                <div>
+                                    <label class="required" for="id_academic_year">Academic year:</label>
+                                    <input type="text" name="academic_year" class="vTextField" maxlength="40" required="" id="id_academic_year">
+                                </div>
+                            </div>
+                            <div class="form-row field-mCode">
+                                <div>
+                                    <label class="required" for="id_mCode">Course Code:</label>
+                                    <input type="text" name="mCode" class="vTextField" maxlength="20" required="" id="id_mCode">
+                                </div>
+                            </div>
+                            <div class="form-row field-credits">
+                                <div>
+                                    <label class="required" for="id_credits">Credits:</label>
+                                    <input type="number" name="credits" class="vIntegerField" required="" id="id_credits">
+                                </div>
+                            </div>
+                            <div class="form-row field-level">
+                                <div>
+                                    <label class="required" for="id_level">Level:</label>
+                                    <input type="number" name="level" class="vIntegerField" required="" id="id_level">
+                                </div>
+                            </div>
+                            <div class="form-row field-semester">
+                                <div>
+                                    <label class="required" for="id_semester">Semester:</label>
+                                    <div class="related-widget-wrapper">
+                                        <select name="id_semester" required="" id="id_semester">
+                                            <option value="" selected="">---------</option>
+                                            <option value="Spring">Spring</option>
+                                            <option value="Autumn">Autumn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row field-summary">
+                                <div>
+                                    <label class="required" for="id_summary">Summary:</label>
+                                    <textarea name="summary" cols="40" rows="10" class="vLargeTextField" required="" id="id_summary"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row field-aims">
+                                <div>
+                                    <label class="required" for="id_aims">Aims:</label>
+                                    <textarea name="aims" cols="40" rows="10" class="vLargeTextField" required="" id="id_aims"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row field-method_frequency">
+                                <div>
+                                    <label class="required" for="id_method_frequency">Method frequency:</label>
+                                    <textarea name="method_frequency" cols="40" rows="10" class="vLargeTextField" required="" id="id_method_frequency"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row field-assessment">
+                                <div>
+                                    <label class="required" for="id_assessment">Assessment:</label>
+                                    <textarea name="assessment" cols="40" rows="10" class="vLargeTextField" required="" id="id_assessment"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row field-assessment_period">
+                                <div>
+                                    <label class="required" for="id_assessment_period">Assessment period:</label>
+                                    <textarea name="assessment_period" cols="40" rows="10" class="vLargeTextField" required="" id="id_assessment_period"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row field-outcomes">
+                                <div>
+                                    <label class="required" for="id_outcomes">Outcomes:</label>
+                                    <textarea name="outcomes" cols="40" rows="10" class="vLargeTextField" required="" id="id_outcomes"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row field-dID">
+                                <div>
+                                    <label class="required" for="id_dID">Department:</label>
+                                    <div class="related-widget-wrapper">
+                                        <select name="dID" required="" id="id_dID">
+                                            <option value="" selected="">---------</option>
+                                            <option value="1">CELE, Ningbo China, University of Nottingham</option>
+                                            <option value="2">Science and Engineering, Ningbo China, University of Nottingham</option>
+                                            <option value="3">Humanities and Social Sciences, Ningbo China, University of Nottingham</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row field-wID">
+                                <div>
+                                    <label class="required" for="id_wID">Teacher:</label>
+                                    <div class="related-widget-wrapper">
+                                        <select name="wID" required="" id="id_wID">
+                                            <option value="9" selected>Teacher:Teacher@nottingham.edu.cn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-row">
+                                <input id="save" type="submit" value="Save" class="default" name="_save">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br class="clear">
+            </div>
+        </div>
+        <footer class="footer">
+            <p>Powered by Shuhai Zhang</p>
+        </footer>
+    </div>
+    {% load static %}
+    <script
+            type="text/javascript"
+            charset="utf-8"
+            src="{% static 'js/HeaderInit.js' %}"
+    ></script>
+    <script
+            type="text/javascript"
+            charset="utf-8"
+            src="{% static 'js/AddCourse.js' %}"
+    ></script>
+</body>
+</html>

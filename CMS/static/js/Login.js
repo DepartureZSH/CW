@@ -24,7 +24,11 @@ form.addEventListener('submit', (event) => {
                     localStorage.setItem("username", data["username"]);
                     localStorage.setItem("role", data["role"]);
                     alert("Successfully authentication!");
-                    window.location.href=window.location.origin+"/homepage/"
+                    if(data["role"]==="admin"){
+                        window.location.href = window.location.origin + "/admin";
+                    }else{
+                        window.location.href=window.location.origin+"/homepage/"
+                    }
                 }else{
                     alert(data["msg"]);
                 }
